@@ -1,7 +1,30 @@
 ﻿#include <iostream>
 /*ZADANIE 10*/
 /*Temat: Referencje*/
-
+void switchyswitch(int& a, int& b)
+{	
+	int temporary = a;
+	a = b;
+	b = temporary;
+}
+bool sort_5(int& jeden, int& dwa, int& trzy, int& cztery, int& piec)
+{
+	if (jeden != dwa && jeden != trzy && jeden != cztery && jeden != piec && dwa != trzy && dwa != cztery && dwa != piec && trzy != cztery && trzy != piec && cztery != piec)
+	{
+		while (!(jeden < dwa && dwa < trzy && trzy < cztery && cztery < piec))
+		{
+			if (jeden > dwa) switchyswitch(jeden, dwa);
+			if (dwa > trzy) switchyswitch(dwa, trzy);
+			if (trzy > cztery) switchyswitch(trzy, cztery);
+			if (cztery > piec) switchyswitch(cztery, piec);
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 int main()
 {
 	/*ZADANIE 10.1*/
@@ -19,4 +42,23 @@ int main()
 	//7.1. Wypisz liczby przed sortowaniem
 	//7.2. Sprawdź czy nastąpiło sortowanie
 	//7.3. Jeśli tak to wypisz posortowane liczby, jeśli nie to odpowiedni komunikat
+	int jeden = 758;
+	int dwa = 57;
+	int trzy = 8;
+	int cztery = -56;
+	int piec = 57;
+	 
+
+	std::cout << "Twoje liczby przed sortowaniem: \n" << jeden << "\n" << dwa << "\n" << trzy << '\n' << cztery << '\n' << piec << "\n";
+	bool result = sort_5(jeden, dwa, trzy, cztery, piec);
+
+	if(result)
+	{
+		std::cout << "Twoje liczby po posortowaniu to: \n" << jeden << "\n" << dwa << "\n" << trzy << '\n' << cztery << '\n' << piec << "\n";
+	}
+	else
+	{
+		std::cout << "Nie nastapilo sortowanie. srl. \n\n";
+	}
+		
 }
